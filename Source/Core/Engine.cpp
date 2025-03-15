@@ -11,8 +11,14 @@
 #include "Object/Actor/Sphere.h"
 #include "Static/FEditorManager.h"
 #include "Static/FLineBatchManager.h"
+<<<<<<< Updated upstream
 #include "Core/Rendering/FDevice.h"
 
+=======
+#include "Static/FUUIDBillBoard.h"
+#include "Object/Actor/Quad.h"
+#include "Object/Actor/TextureQuad.h"
+>>>>>>> Stashed changes
 
 class AArrow;
 class APicker;
@@ -228,12 +234,13 @@ void UEngine::InitWorld()
 	//FLineBatchManager::Get().AddLine(FVector{ 6.0f,6.0f,8.0f }, { -6.f,-6.f,-8.0f });
 
 	FLineBatchManager::Get().DrawWorldGrid(100.f,1.f);
-
+	FUUIDBillBoard::Get().UpdateString(L"ASDF-1JID-WSG3-9JA8");
     //// Test
     //AArrow* Arrow = World->SpawnActor<AArrow>();
     //World->SpawnActor<ASphere>();
     
     World->SpawnActor<AAxis>();
+	//World->SpawnActor<ATextureQuad>();
     World->SpawnActor<APicker>();
 
 	World->BeginPlay();

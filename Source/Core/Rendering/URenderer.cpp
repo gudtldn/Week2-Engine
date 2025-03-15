@@ -7,6 +7,7 @@
 #include "Static/FLineBatchManager.h"
 #include "Resource/DirectResource/Vertexbuffer.h"
 #include "DirectXTK/WICTextureLoader.h"
+<<<<<<< Updated upstream
 #include "FDevice.h"
 #include "Debug/DebugConsole.h"
 #include "Object/Assets/SceneAsset.h"
@@ -14,6 +15,9 @@
 #include "Resource/DirectResource/VertexShader.h"
 #include "Resource/DirectResource/InputLayout.h"
 
+=======
+#include "Static/FUUIDBillBoard.h"
+>>>>>>> Stashed changes
 
 void URenderer::Create(HWND hWindow)
 {
@@ -26,7 +30,7 @@ void URenderer::Create(HWND hWindow)
     CreatePickingTexture(hWindow);
 
 	FLineBatchManager::Get().Create();
-    
+    FUUIDBillBoard::Get().Create();
     InitMatrix();
 
 	LoadTexture(L"font_atlas.png");
@@ -93,10 +97,21 @@ void URenderer::CreateShader()
     //
     // FDevice::Get().GetDevice()->CreateInputLayout(Layout, ARRAYSIZE(Layout), VertexShaderCSO->GetBufferPointer(), VertexShaderCSO->GetBufferSize(), &SimpleInputLayout);
 
-    PickingShaderCSO->Release();
+<<<<<<< Updated upstream
+=======
+	D3D11_INPUT_ELEMENT_DESC TextureLayout[] =
+	{
+		{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+		{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+	};
 
-    // 정점 하나의 크기를 설정 (바이트 단위)
-    Stride = sizeof(FVertexSimple);
+    Device->CreateInputLayout(Layout, ARRAYSIZE(Layout), VertexShaderCSO->GetBufferPointer(), VertexShaderCSO->GetBufferSize(), &SimpleInputLayout);
+	Device->CreateInputLayout(TextureLayout, ARRAYSIZE(TextureLayout), FontVertexShaderCSO->GetBufferPointer(), FontVertexShaderCSO->GetBufferSize(), &TextureInputLayout);
+
+    VertexShaderCSO->Release();
+    PixelShaderCSO->Release();
+>>>>>>> Stashed changes
+    PickingShaderCSO->Release();
 }
 
 void URenderer::ReleaseShader()
@@ -170,9 +185,18 @@ void URenderer::Prepare() const
 void URenderer::PrepareShader() const
 {
     // 기본 셰이더랑 InputLayout을 설정
+<<<<<<< Updated upstream
     //FDevice::Get().GetDeviceContext()->VSSetShader(SimpleVertexShader, nullptr, 0);
     //FDevice::Get().GetDeviceContext()->PSSetShader(SimplePixelShader, nullptr, 0);
     //FDevice::Get().GetDeviceContext()->IASetInputLayout(SimpleInputLayout);
+=======
+    DeviceContext->VSSetShader(SimpleVertexShader, nullptr, 0);
+    DeviceContext->PSSetShader(SimplePixelShader, nullptr, 0);
+    DeviceContext->IASetInputLayout(SimpleInputLayout);
+	//DeviceContext->IASetInputLayout(TextureInputLayout);
+	//DeviceContext->VSSetShader(FontVertexShader, nullptr, 0);
+	//DeviceContext->PSSetShader(FontPixelShader, nullptr, 0);
+>>>>>>> Stashed changes
 
     // 버텍스 쉐이더에 상수 버퍼를 설정
     if (ConstantBuffer)
@@ -187,9 +211,6 @@ void URenderer::PrepareShader() const
 
 void URenderer::RenderPrimitive(class UPrimitiveComponent& PrimitiveComp, const class FMatrix& ModelMatrix)
 {
-
-
-
 	FMatrix MVP = FMatrix::Transpose(
 		ModelMatrix *
 	ViewMatrix *
@@ -202,29 +223,36 @@ void URenderer::RenderPrimitive(class UPrimitiveComponent& PrimitiveComp, const 
         PrimitiveComp.IsUseVertexColor()
     };
 
+	//임시로 만듦 각 렌더러에 맞는 쉐이더를 넣어야함
+
+	DeviceContext->IASetInputLayout(SimpleInputLayout);
+	DeviceContext->VSSetShader(SimpleVertexShader, nullptr, 0);
+	DeviceContext->PSSetShader(SimplePixelShader, nullptr, 0);
+
     UpdateConstant(UpdateInfo);
 	
-	
-
-	
-    RenderPrimitiveInternal( PrimitiveComp);
-
+    RenderPrimitiveInternal(PrimitiveComp);
 }
 
 void URenderer::RenderPrimitiveInternal(class UPrimitiveComponent& PrimitiveComp) const
 {
     UINT Offset = 0;
 
+<<<<<<< Updated upstream
 	//임시로 만듦 각 렌더러에 맞는 쉐이더를 넣어야함
 	//FDevice::Get().GetDeviceContext()->VSSetShader(SimpleVertexShader, nullptr, 0);
 	//FDevice::Get().GetDeviceContext()->PSSetShader(SimplePixelShader, nullptr, 0);
 
 	if (PrimitiveComp.VertexShader == nullptr)
+=======
+	if (PrimitiveComp.VertexBuffer != nullptr)
+>>>>>>> Stashed changes
 	{
 		UE_LOG("Error: VertexShader has not been set.");
 	}
 	else
 	{
+<<<<<<< Updated upstream
 	
 	}
 	
@@ -249,6 +277,14 @@ void URenderer::RenderPrimitiveInternal(class UPrimitiveComponent& PrimitiveComp
 		PrimitiveComp.PixelShader->Setting();
 		PrimitiveComp.IndexBuffer->Setting();
 		PrimitiveComp.InputLayout->Setting();
+=======
+		//DeviceContext->IASetVertexBuffers(0, 1, &vertexBuffer, &Stride, &Offset);
+	}
+
+	PrimitiveComp.VertexBuffer->Setting();
+	PrimitiveComp.IndexBuffer->Setting();
+	//DeviceContext->IASetPrimitiveTopology(PrimitiveComp.Topology);
+>>>>>>> Stashed changes
 
 	FDevice::Get().GetDeviceContext()->IASetPrimitiveTopology(PrimitiveComp.Topology);
 	

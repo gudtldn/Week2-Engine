@@ -1,7 +1,9 @@
 #pragma once
 #include "Primitive/PrimitiveVertices.h"
 #include "Core/Container/Map.h"
-class FFontAtlas
+#include "Core/AbstractClass/Singleton.h"
+
+class FFontAtlas : public TSingleton<FFontAtlas>
 {
 public:
 	FFontAtlas();

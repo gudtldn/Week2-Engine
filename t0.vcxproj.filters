@@ -177,10 +177,52 @@
     <ClCompile Include="Source\Core\UObject\NameTypes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\UFontAtlas.cpp">
+    <ClCompile Include="Source\Core\Utils\JsonSaveHelper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Core\Utils\JsonSaveHelper.cpp">
+    <ClCompile Include="Source\Object\Actor\TextureQuad.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Resource\DirectResource\DirectBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Resource\DirectResource\IndexBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Resource\DirectResource\Vertexbuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Resource\RenderResourceManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Resource\Resource.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ThirdParty\ImGui\include\ImGui\imgui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ThirdParty\ImGui\include\ImGui\imgui_demo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ThirdParty\ImGui\include\ImGui\imgui_draw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ThirdParty\ImGui\include\ImGui\imgui_impl_dx11.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ThirdParty\ImGui\include\ImGui\imgui_impl_win32.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ThirdParty\ImGui\include\ImGui\imgui_tables.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ThirdParty\ImGui\include\ImGui\imgui_widgets.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FontAtlas.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Static\FUUIDBillBoard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Core\Rendering\FDevice.cpp">
@@ -425,16 +467,17 @@
     <ClInclude Include="Source\Core\UObject\NameTypes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\UFontAtlas.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Core\Utils\JsonSaveHelper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Object\Gizmo\Axis.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< Updated upstream
     <ClInclude Include="Source\Core\Rendering\FDevice.h">
+=======
+    <ClInclude Include="Source\Object\Actor\TextureQuad.h">
+>>>>>>> Stashed changes
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Resource\DirectResource\DirectBuffer.h">
@@ -443,6 +486,7 @@
     <ClInclude Include="Source\Resource\DirectResource\IndexBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< Updated upstream
     <ClInclude Include="Source\Resource\DirectResource\InputLayout.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -458,6 +502,11 @@
     <ClInclude Include="Source\Resource\DirectResource\VertexShader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+=======
+    <ClInclude Include="Source\Resource\DirectResource\Vertexbuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+>>>>>>> Stashed changes
     <ClInclude Include="Source\Resource\RenderResourceManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -557,7 +606,14 @@
     <ClInclude Include="Source\ThirdParty\SimpleJSON\include\SimpleJSON\Json.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< Updated upstream
     <ClInclude Include="Source\Primitive\PrimitiveVertices.h">
+=======
+    <ClInclude Include="Source\FontAtlas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Static\FUUIDBillBoard.h">
+>>>>>>> Stashed changes
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

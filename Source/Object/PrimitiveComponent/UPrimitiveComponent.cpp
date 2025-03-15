@@ -5,9 +5,13 @@
 #include "Object/Actor/Camera.h"
 #include "Primitive/UGeometryGenerator.h"
 #include "Resource/DirectResource/Vertexbuffer.h"
+<<<<<<< Updated upstream
 #include "Resource/DirectResource/VertexShader.h"
 #include "Resource/DirectResource/PixelShader.h"
 #include "Resource/DirectResource/InputLayout.h"
+=======
+#include "FontAtlas.h"
+>>>>>>> Stashed changes
 
 //#include ""
 
@@ -98,7 +102,7 @@ void UPrimitiveComponent::CalculateModelMatrix(FMatrix& OutMatrix)
 		FVector objectPosition = GetWorldTransform().GetPosition();	
 		FVector objectScale = GetWorldTransform().GetScale();
 
-		FVector lookDir = (cameraPosition - objectPosition).GetSafeNormal();
+		FVector lookDir = (objectPosition - cameraPosition).GetSafeNormal();
 
 		// 언리얼 좌표계에 맞춘 구형 빌보드
 		// Z축이 상방 벡터
@@ -263,6 +267,103 @@ ULineComp::ULineComp()
 		
 		VertexBuffer = FVertexBuffer::Create(FString("Line"), vertices);
 		IndexBuffer = FIndexBuffer::Create(FString("Line"), indices);
+	}
+}
+
+//UQuadComp::UQuadComp()
+//{
+//	//없으면 만든다.
+//	VertexBuffer = FVertexBuffer::Find("Quad");
+//	IndexBuffer = FIndexBuffer::Find("Quad");
+//	if (VertexBuffer == nullptr)
+//	{
+//		FVertexTexture tempArray[] =
+//		{
+//			{  0.0f, -1.0f, 1.0f, 0.0f, 0.0f },
+//			{  0.0f, 1.0f, 1.0f, 1.0f, 0.0f, },
+//			{  0.0f, 1.0f, -1.0f,  1.0f, 1.0f },
+//			{  0.0f, -1.0f, -1.0f,  0.0f, 1.0f },
+//		};
+//
+//		TArray<FVertexTexture> vertices;
+//
+//		vertices.Add(tempArray[0]);
+//		vertices.Add(tempArray[1]);
+//		vertices.Add(tempArray[2]);
+//		vertices.Add(tempArray[3]);
+//
+//		uint32 tempIndices[6] =
+//		{
+//			0, 1, 2,
+//			0, 2, 3,
+//		};
+//
+//		TArray<uint32> indices;
+//
+//		indices.Add(tempIndices[0]);
+//		indices.Add(tempIndices[1]);
+//		indices.Add(tempIndices[2]);
+//		indices.Add(tempIndices[3]);
+//		indices.Add(tempIndices[4]);
+//		indices.Add(tempIndices[5]);
+//
+//		VertexBuffer = FVertexBuffer::Create(FString("Quad"), vertices);
+//		IndexBuffer = FIndexBuffer::Create(FString("Quad"), indices);
+//	}
+//}
+
+UTextureQuadComp::UTextureQuadComp()
+{
+	//없으면 만든다.
+	bIsBillboard = true;
+
+	VertexBuffer = FVertexBuffer::Find("TexQuad");
+	IndexBuffer = FIndexBuffer::Find("TexQuad");
+
+	if (VertexBuffer == nullptr)
+	{
+		FFontAtlas Atlas;
+
+		wchar_t c = L'L';
+
+		const GlyphInfo& glyph = Atlas.GetGlyph(c);
+
+		FVertexTexture tempArray[] =
+		{
+			/*{  0.0f, -1.0f, 1.0f, 0.0f, 0.0f },
+			{  0.0f, 1.0f, 1.0f, 1.0f, 0.0f, },
+			{  0.0f, 1.0f, -1.0f,  1.0f, 1.0f },
+			{  0.0f, -1.0f, -1.0f,  0.0f, 1.0f },*/
+			{  0.0f, -0.5f, 1.0f, glyph.u, glyph.v },
+			{  0.0f, 0.5f, 1.0f, glyph.u + glyph.width, glyph.v },
+			{  0.0f, 0.5f, -1.0f,  glyph.u + glyph.width, glyph.v + glyph.height },
+			{  0.0f, -0.5f, -1.0f,  glyph.u, glyph.v + glyph.height },
+		};
+
+		TArray<FVertexTexture> vertices;
+
+		vertices.Add(tempArray[0]);
+		vertices.Add(tempArray[1]);
+		vertices.Add(tempArray[2]);
+		vertices.Add(tempArray[3]);
+
+		uint32 tempIndices[6] =
+		{
+			0, 1, 2,
+			0, 2, 3,
+		};
+
+		TArray<uint32> indices;
+
+		indices.Add(tempIndices[0]);
+		indices.Add(tempIndices[1]);
+		indices.Add(tempIndices[2]);
+		indices.Add(tempIndices[3]);
+		indices.Add(tempIndices[4]);
+		indices.Add(tempIndices[5]);
+
+		VertexBuffer = FVertexBuffer::Create(FString("TexQuad"), vertices);
+		IndexBuffer = FIndexBuffer::Create(FString("TexQuad"), indices);
 	}
 }
 

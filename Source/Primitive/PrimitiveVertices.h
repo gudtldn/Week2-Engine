@@ -9,6 +9,12 @@ struct FVertexSimple
     float R, G, B, A; // Color
 };
 
+struct FVertexTexture
+{
+	float X, Y, Z;    // Position
+	float U, V; // UV
+};
+
 struct FLineVertexSimple {
 	FVector position;
 	FVector4 color;

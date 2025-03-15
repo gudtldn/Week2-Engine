@@ -152,7 +152,12 @@ protected:
 	ID3D11VertexShader* FontVertexShader = nullptr;       // Vertex 데이터를 처리하는 Vertex 셰이더
 	ID3D11PixelShader* FontPixelShader = nullptr;         // Pixel의 색상을 결정하는 Pixel 셰이더
 
+<<<<<<< Updated upstream
     //ID3D11InputLayout* SimpleInputLayout = nullptr;         // Vertex 셰이더 입력 레이아웃 정의
+=======
+    ID3D11InputLayout* SimpleInputLayout = nullptr;         // Vertex 셰이더 입력 레이아웃 정의
+	ID3D11InputLayout* TextureInputLayout = nullptr;
+>>>>>>> Stashed changes
     unsigned int Stride = 0;                                // Vertex 버퍼의 각 요소 크기
 
 	ID3D11DepthStencilState* DepthStencilState = nullptr;   // DepthStencil 상태(깊이 테스트, 스텐실 테스트 등 정의)
@@ -198,5 +203,6 @@ public:
 
 	void RenderPickingTexture();
 	FMatrix GetProjectionMatrix() const { return ProjectionMatrix; }
+	FMatrix GetViewMatrix() const { return ViewMatrix; }
 #pragma endregion picking
 };

@@ -177,6 +177,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Static\FUUIDBillBoard.cpp" />
+    <ClCompile Include="Source\Object\Actor\TextureQuad.cpp" />
     <ClCompile Include="Source\Core\Config\ConfigManager.cpp" />
     <ClCompile Include="Source\Core\Rendering\FDevice.cpp" />
     <ClCompile Include="Source\Core\Rendering\FDeviceResource.cpp" />
@@ -281,6 +283,8 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Static\FUUIDBillBoard.h" />
+    <ClInclude Include="Source\Object\Actor\TextureQuad.h" />
     <ClInclude Include="Source\Core\Config\ConfigManager.h" />
     <ClInclude Include="Source\Core\Rendering\FDevice.h" />
     <ClInclude Include="Source\Core\Utils\JsonSaveHelper.h" />

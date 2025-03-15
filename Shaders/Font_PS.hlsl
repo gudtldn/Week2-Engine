@@ -4,10 +4,10 @@ SamplerState samLinear : register(s0);
 struct VS_OUTPUT
 {
     float4 Pos : SV_POSITION;
-    float2 Tex : TEXCOORD0;
+    float2 Tex : TEXCOORD;
 };
 
-float4 Font_PS(VS_OUTPUT input) : SV_Target
+float4 Font_PS(VS_OUTPUT input) : SV_TARGET
 {
 	float4 sampledColor = fontAtlas.Sample(samLinear, input.Tex);
 	
