@@ -14,13 +14,13 @@ void FVertexBuffer::Setting() const
 	{
 		UE_LOG("Error: Vertexbuffer Setting Failed");
 	}
-
+	
 	FDevice::Get().GetDeviceContext()->IASetVertexBuffers(0, 1, &Buffer, &VertexSize, &Offset);
 }
 
 void FVertexBuffer::ResCreate(const void* _Data, size_t _VertexSize, size_t _VertexCount)
 {
-
+	
 	VertexSize = static_cast<UINT>(_VertexSize);
 	VertexCount = static_cast<UINT>(_VertexCount);
 
