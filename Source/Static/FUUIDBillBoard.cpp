@@ -90,7 +90,7 @@ void FUUIDBillBoard::Render()
 		return;
 
 	//Prepare
-	ID3D11DeviceContext* DeviceContext = UEngine::Get().GetRenderer()->GetDeviceContext();
+	ID3D11DeviceContext* DeviceContext = FDevice::Get().GetDeviceContext();
 
 	// 버텍스 버퍼 업데이트
 	D3D11_MAPPED_SUBRESOURCE mappedResource;
@@ -147,8 +147,8 @@ void FUUIDBillBoard::Render()
 
 void FUUIDBillBoard::Create()
 {
-	ID3D11Device* Device = UEngine::Get().GetRenderer()->GetDevice();
-	ID3D11DeviceContext* DeviceContext = UEngine::Get().GetRenderer()->GetDeviceContext();
+	ID3D11Device* Device = FDevice::Get().GetDevice();
+	ID3D11DeviceContext* DeviceContext = FDevice::Get().GetDeviceContext();
 
 	D3D11_BUFFER_DESC vertexBufferDesc = {};
 	vertexBufferDesc.Usage = D3D11_USAGE_DYNAMIC;

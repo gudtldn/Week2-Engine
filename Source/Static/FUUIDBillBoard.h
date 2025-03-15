@@ -4,6 +4,7 @@
 #include "Object/USceneComponent.h"
 #include "Primitive/PrimitiveVertices.h"
 #include "Core/Container/Array.h"
+#include "Core/Rendering/FDevice.h"
 
 struct FFontConstantInfo
 {
