@@ -132,7 +132,6 @@ void UI::RenderControlPanel()
     RenderMemoryUsage();
     RenderPrimitiveSelection();
     RenderCameraSettings();
-	RenderGridSettings();
     
     ImGui::End();
 }
@@ -424,30 +423,30 @@ void UI::RenderSceneManager()
 		}
 	}
 
-	PrevSize = Actors.Num();
+		PrevSize = Actors.Num();
 
-	static int SelectUUIDIndex = 0;
+		static int SelectUUIDIndex = 0;
 
-	if (ImGui::ListBox("ActorList", &SelectUUIDIndex, &cUUIDNames[0], static_cast<int>(cUUIDNames.Num())))
-	{
-		uint32 UUID = UUIDs[SelectUUIDIndex];
-
-		for (int i = 0; i < Actors.Num(); i++)
+		if (ImGui::ListBox("ActorList", &SelectUUIDIndex, &cUUIDNames[0], static_cast<int>(cUUIDNames.Num())))
 		{
-			AActor* Actor = Actors[i];
-			if (Actor->GetUUID() == UUID)
+			uint32 UUID = UUIDs[SelectUUIDIndex];
+
+			for (int i = 0; i < Actors.Num(); i++)
 			{
-				//if (CurActor != nullptr)
-					//CurActor->IsHighlightValue = false;
-				CurActor = Actor;
-				FEditorManager::Get().SelectActor(CurActor);
+				AActor* Actor = Actors[i];
+				if (Actor->GetUUID() == UUID)
+				{
+					//if (CurActor != nullptr)
+						//CurActor->IsHighlightValue = false;
+					CurActor = Actor;
+					FEditorManager::Get().SelectActor(CurActor);
+				}
 			}
 		}
-	}
 
+	
 
-
-
+	
 
 	// if (CurActor != nullptr)
 	// {
@@ -472,7 +471,7 @@ void UI::RenderSceneManager()
 	// 	}
 	// 	CurObject->IsHighlightValue = true;
 	// }
-
+	
 	ImGui::End();
 }
 
@@ -508,20 +507,4 @@ void UI::RenderViewModePanel()
 		}
 	}
 	ImGui::End();
-}
-
-void UI::RenderGridSettings()
-{
-	UEngine* Engine = &UEngine::Get();
-	UWorld* World = Engine->GetWorld();
-
-	if (World == nullptr)
-	{
-		return;
-	}
-
-	if(ImGui::SliderFloat("Grid Size", &World->GetGridSizePtr(), 100.f, 1000.f, "%.2f"))
-	{
-		World->OnChangedGridSize();
-	}
 }

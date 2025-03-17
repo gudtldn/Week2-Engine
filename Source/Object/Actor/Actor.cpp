@@ -40,11 +40,6 @@ void AActor::LateTick(float DeltaTime)
 void AActor::Destroyed()
 {
 	EndPlay(EEndPlayReason::Destroyed);
-	
-	for (auto& Component : Components)
-	{
-		Component->Destroyed();
-	}
 }
 
 

@@ -1,4 +1,4 @@
-#include "String.h"
+﻿#include "String.h"
 #include <algorithm>
 #include <cctype>
 
@@ -22,15 +22,6 @@ FString FString::SanitizeFloat(float InFloat)
     return FString{std::to_wstring(InFloat)};
 #else
     return FString{std::to_string(InFloat)};
-#endif
-}
-
-float FString::ToFloat(const FString& InString)
-{
-#if USE_WIDECHAR
-	return std::stof(InString.GetData());
-#else
-	return std::stof(InString.GetData());
 #endif
 }
 
