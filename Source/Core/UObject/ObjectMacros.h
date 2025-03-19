@@ -26,3 +26,16 @@ public: \
 		} \
 		return StaticClassInfo.get(); \
 	} \
+
+
+#define DECLARE_UINTERFACE(TClass, TSuperClass) \
+	DECLARE_CLASS(TClass, TSuperClass) \
+public: \
+	virtual ~TClass() = default;
+
+#define DECLARE_IINTERFACE(IInterface, UInterface) \
+protected: \
+	virtual ~IInterface() = default; \
+public: \
+	using UClassType = UInterface; \
+	using ThisClass = IInterface;
