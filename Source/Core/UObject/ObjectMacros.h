@@ -21,7 +21,7 @@ public: \
 		{ \
 			constexpr size_t ClassSize = sizeof(UClass); \
 			void* RawMemory = FPlatformMemory::Malloc<EAT_Object>(ClassSize); \
-			UClass* ClassPtr = new (RawMemory) UClass{ #TClass, static_cast<uint32>(sizeof(TClass)), static_cast<uint32>(alignof(TClass)), TSuperClass::StaticClass() }; \
+			UClass* ClassPtr = new (RawMemory) UClass{ TEXT(#TClass), static_cast<uint32>(sizeof(TClass)), static_cast<uint32>(alignof(TClass)), TSuperClass::StaticClass() }; \
 			StaticClassInfo = std::unique_ptr<UClass, UClassDeleter>(ClassPtr, UClassDeleter{}); \
 		} \
 		return StaticClassInfo.get(); \
