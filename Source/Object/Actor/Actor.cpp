@@ -460,8 +460,7 @@ const char* AActor::GetTypeName()
 
 bool AActor::Destroy()
 {
-	UWorld* World = GetWorld();
-	if (World)
+	if (UWorld* World = GetWorld())
 	{
 		World->DestroyActor(this);
 	}
